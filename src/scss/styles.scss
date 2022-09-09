@@ -35,11 +35,12 @@ body {
     height: inherit;
     display: grid;
     grid-template-areas:
+        "alert"
         "header"
         "content"
         "footer";
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
 }
 
 a {
@@ -106,6 +107,11 @@ a {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    grid-area: alert;
+
+    @media screen and (min-width: 768px) {
+        position: relative;
+    }
 
     &--warning {
         background-color: $themeLightYellow;
@@ -119,7 +125,7 @@ a {
         &__title {
             display: inline;
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: $breakpointMobile) {
                 display: block;
                 text-align: center;
                 margin-top: 0.5rem;
@@ -135,19 +141,16 @@ a {
         margin-bottom: 1.1rem;
         cursor: pointer;
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: $breakpointMobile) {
             position: absolute;
             right: 1.4rem;
             top: 1.2rem;
         }
     }
-
-    @media screen and (min-width: 768px) {
-        position: relative;
-    }
 }
 // - header with navigation
 .header {
+    grid-area: header;
     padding: 2rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 
@@ -157,67 +160,94 @@ a {
 }
 
 // - modal
-.modal {
-    position: absolute;
+.modal-wrapper {
+    position: fixed;
     z-index: 100;
-    height: 100vh;
-    width: 100%;
-    background-color: $themeWhite;
-    padding: 3rem;
+    left: 0;
     top: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $themeModalBackdrop;
 
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .modal {
+        z-index: 101;
+        height: inherit;
+        width: inherit;
+        background-color: $themeWhite;
+        padding: 3rem;
+        top: 0;
+        bottom: 0;
 
-        &__title {
-            font-weight: 800;
-            font-size: 1.5rem;
-            margin-bottom: 0.4rem;
+        @media screen and (min-width: $breakpointMobile) {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            bottom: initial;
+            height: auto;
+            width: 60rem;
+            height: 32rem;
         }
 
-        &__close {
-            font-size: 2.4rem;
-            cursor: pointer;
-            border: 0;
-            background: none;
-            margin-right: -0.6rem;
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &__title {
+                font-weight: 800;
+                font-size: 1.5rem;
+                margin-bottom: 0.4rem;
+            }
+
+            &__close {
+                font-size: 2.4rem;
+                cursor: pointer;
+                border: 0;
+                background: none;
+                margin-right: -0.6rem;
+            }
         }
-    }
 
-    &__body {
-        margin-top: 1.6rem;
+        &__body.language-lists {
+            margin-top: 1.6rem;
 
-        .list__item {
-            font-size: 1.3rem;
+            @media screen and (min-width: $breakpointMobile) {
+                display: flex;
+                justify-content: flex-start;
+            }
 
-            &__link {
-                display: inline-block;
-                padding: 1rem 1.4rem;
-                width: 100%;
-                color: $themeBlack;
-
-                &:hover {
-                    color: $themeOnHoverLink;
+            .list {
+                @media screen and (min-width: $breakpointMobile) {
+                    min-width: 20rem;
                 }
 
-                &.active {
-                    border: 0.1rem solid $themeBlack;
+                &__item {
+                    font-size: 1.3rem;
+
+                    &__link {
+                        display: inline-block;
+                        padding: 1rem 1.4rem;
+                        width: 100%;
+                        color: $themeBlack;
+
+                        &:hover {
+                            color: $themeOnHoverLink;
+                        }
+
+                        &.active {
+                            border: 0.1rem solid $themeBlack;
+                        }
+                    }
                 }
             }
         }
     }
+}
 
-    @media screen and (min-width: 768px) {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: auto;
-        bottom: initial;
-        height: auto;
-    }
+.main {
+    grid-area: content;
 }
 
 // - footer
@@ -225,24 +255,66 @@ a {
     background-color: $themeBlack;
     color: $themeWhite;
     padding: 2rem 1.6rem;
+    grid-area: footer;
 
-    &__links {
-        .language-changer:hover {
-            background-color: lighten($themeBlack, 10%);
+    @media screen and (min-width: $breakpointMobile) {
+        padding: 3.6rem 5rem;
+
+        &__logo-copyright {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__actions {
+        @media screen and (min-width: $breakpointMobile) {
+            display: flex;
+            justify-content: space-between;
         }
 
-        .list {
-            margin: 2.3rem 0;
+        .button-wrapper {
+            @media screen and (min-width: $breakpointMobile) {
+                order: 2;
+            }
 
-            &__item {
-                padding-bottom: 1rem;
+            .language-changer:hover {
+                background-color: lighten($themeBlack, 10%);
+            }
+        }
 
-                &__link {
-                    color: $themeWhite;
-                    font-size: 1.3rem;
+        .links {
+            margin: 0 0 2.8rem 0;
 
-                    &:hover {
-                        text-decoration: underline;
+            @media screen and (min-width: $breakpointMobile) {
+                display: flex;
+                flex-wrap: wrap;
+                flex: 1;
+                gap: 10%;
+                order: 1;
+            }
+
+            .list {
+                &:not(:first-child):not(:last-child) {
+                    margin: 2.8rem 0 0 0;
+                }
+
+                @media screen and (min-width: $breakpointMobile) {
+                    &:not(:first-child):not(:last-child) {
+                        margin: 0;
+                    }
+                }
+
+                &__item {
+                    padding-bottom: 1rem;
+
+                    &__link {
+                        color: $themeWhite;
+                        font-size: 1.3rem;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
                 }
             }
@@ -261,14 +333,25 @@ a {
         margin-top: 1rem;
         display: block;
     }
+}
 
-    @media screen and (min-width: 768px) {
-        padding: 3.6rem 5rem;
+// mobile
+@media screen and (max-width: $breakpointMobile) {
+    .d-mobile-none {
+        display: none;
+    }
+}
 
-        &__logo-copyright {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+// tablet
+@media (min-width: $breakpointMobile) and (max-width: $breakpointTablet) {
+    .d-tablet-none {
+        display: none;
+    }
+}
+
+// desktop
+@media screen and (min-width: $breakpointTablet) {
+    .d-desktop-none {
+        display: none;
     }
 }

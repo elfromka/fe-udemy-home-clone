@@ -19,7 +19,6 @@ const openModal = (e) => {
     e.preventDefault();
     languageChangerModal.classList.remove("d-none");
     documentBody.classList.add("overflow-hidden");
-    // window.scrollTo(0, 0); // TODO HOTFIX - this needs to be changed!
 };
 
 const closeModal = (e) => {

@@ -1,6 +1,9 @@
 $fontRaleway: "Raleway", sans-serif;
 $fontNotoSerifGeorgian: "Noto Serif Georgian", serif;
 
+$breakpointMobile: "576px";
+$breakpointTablet: "992px";
+
 $themeBlack: #1c1d1f;
 $themeGrey: #6a6f73;
 $themeLightGrey: #d1d7dc; // Udemy info section icons background color
@@ -11,6 +14,7 @@ $themeOrange: #b4690e; // Rating number
 $themeBrown: #3d3c0a; // Bestseller text color
 $themePurple: #5c34d3; // Featured topics by category
 $themeWhite: #ffffff;
+$themeModalBackdrop: rgba(28, 29, 31, 0.8);
 
 // Hovers
 $themeOnHoverPrimary: #000000; // primary button

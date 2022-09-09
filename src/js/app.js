@@ -76,11 +76,11 @@ const appendInteractions = () => {
 
 // Load full HTML page with components
 Promise.all([
-    loadHtml("root", "components", "alert"),
+    // loadHtml("root", "components", "alert"),
     loadHtml("root", "components", "modal"),
     loadHtml("root", "pages", "home", {
         parentId: "wrapper",
-        children: ["header", "main", "footer"],
+        children: ["alert", "header", "main", "footer"],
     }),
 ])
     .then(
