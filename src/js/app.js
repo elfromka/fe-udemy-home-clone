@@ -63,6 +63,13 @@ const loadHtml = async (toId, type, filename, childrenSettings = {}) => {
     return true;
 };
 
+/**
+ * Append another script tag at the end of the body tag.
+ *
+ * @summary - creates a script tag with the source path for interactions.js separately after all the pages
+ * and its' components are loaded, appends before the closing body tag, so the interactions
+ * will work with those as well.
+ */
 const appendInteractions = () => {
     const documentBody = document.getElementById("root");
 
@@ -76,7 +83,6 @@ const appendInteractions = () => {
 
 // Load full HTML page with components
 Promise.all([
-    // loadHtml("root", "components", "alert"),
     loadHtml("root", "components", "modal"),
     loadHtml("root", "pages", "home", {
         parentId: "wrapper",
