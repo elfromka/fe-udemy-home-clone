@@ -119,6 +119,16 @@ a {
     }
 
     &--outline-black-pill {
+        border: 0.1rem solid $themeBlack;
+        display: inline-block;
+        padding: 1.4rem;
+        border-radius: 23rem;
+        font-size: 1.5rem;
+        color: $themeBlack;
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
     }
 
     .icon {
@@ -321,20 +331,33 @@ a {
         background: $themeLightestGrey;
         padding: 3.4rem 2rem;
 
+        .list {
+            &__item {
+                padding-bottom: 1.2rem;
+                font-size: 1.6rem;
+                font-weight: 800;
+            }
+        }
+
         .section__title {
             margin-top: 0;
         }
     }
+}
 
-    .partner-logos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem 4rem;
+// Partner logos section
+.partner-logos {
+    .section {
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem 4rem;
 
-        .logo {
-            vertical-align: middle;
+            .logo {
+                vertical-align: middle;
+            }
         }
     }
 }
@@ -346,6 +369,20 @@ a {
             font-family: $fontRaleway;
             font-weight: 800;
             text-align: left;
+        }
+
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+
+            .list__item {
+                display: inline;
+
+                .btn {
+                    font-weight: 900;
+                }
+            }
         }
     }
 }
