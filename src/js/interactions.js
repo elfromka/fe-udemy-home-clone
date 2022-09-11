@@ -14,12 +14,19 @@ const closeWhenClickedOutside = (elementId) => {
     // console.log("still here");
 
     return (e) => {
-        // if clicked outside of modal, or not on the first
-        // language changer button found, close the modal
-        if (
-            !document.getElementById(elementId).contains(e.target) &&
-            !languageChangerOpenButtons[0].contains(e.target)
-        ) {
+        // checks if the clicked element is from inside the modal
+        const isFromModal = document
+            .getElementById(elementId)
+            .contains(e.target);
+
+        // checks if the clicked target is a modal opener from outside before click
+        const isModalOpener = [
+            ...document.querySelectorAll("[data-content-load]"),
+        ].some((el) => el.contains(e.target));
+
+        // if clicked outside of modal, or not on the
+        // modal opener buttons were found, close the modal
+        if (!isFromModal && !isModalOpener) {
             closeModal(e);
         }
     };
@@ -34,7 +41,7 @@ const closeWhenClickedOutside = (elementId) => {
 const openModal = (e) => {
     e.preventDefault();
 
-    const checkLoadableContent = e.target.dataset.contentLoad;
+    const checkLoadableContent = e.currentTarget.dataset.contentLoad;
     const documentBody = document.getElementById("root");
     const modal = document.getElementById("modalWrapper");
 
@@ -131,16 +138,15 @@ const accordionItemsTogglers = () => {
  */
 const loadPageEventListeners = () => {
     const alertDismissButton = document.getElementById("alertDismiss");
-    const languageChangerOpenButtons =
-        document.getElementsByClassName("language-changer");
+    const modalOpeners = document.querySelectorAll("[data-content-load]");
 
     if (alertDismissButton) {
         alertDismissButton.addEventListener("click", dismissAlert);
     }
 
-    if (languageChangerOpenButtons.length) {
-        [...languageChangerOpenButtons].forEach((languageChangerOpenButton) => {
-            languageChangerOpenButton.addEventListener("click", openModal);
+    if (modalOpeners.length) {
+        [...modalOpeners].forEach((modalOpener) => {
+            modalOpener.addEventListener("click", openModal);
         });
     }
 

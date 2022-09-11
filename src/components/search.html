@@ -1,9 +1,24 @@
-<span>
+<div class="search">
     <div class="modal__header">
-        <h3 class="modal__header__title">SEARCH</h3>
-        <button id="modalClose" class="modal__header__close">
-            <i class="bi bi-x close-icon"></i>
-        </button>
+        <div class="search__actions">
+            <input
+                type="text"
+                class="search__actions__input"
+                placeholder="Search for anything"
+                autofocus
+            />
+            <i class="bi bi-search icon"></i>
+
+            <button id="modalClose" class="modal__header__close close-icon">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
     </div>
-    <div class="modal__body">SEARCH</div>
-</span>
+    <div class="modal__body">
+        <ul class="list search__matches">
+            <li class="list__item match">Python</li>
+            <li class="list__item match">JavaScript</li>
+            <li class="list__item match">Web development</li>
+        </ul>
+    </div>
+</div>
