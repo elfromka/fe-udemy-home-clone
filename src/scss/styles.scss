@@ -55,6 +55,11 @@ h6 {
 
 a {
     text-decoration: none;
+
+    &:active,
+    &:focus {
+        -webkit-tap-highlight-color: transparent;
+    }
 }
 
 // Utility classes
@@ -86,6 +91,10 @@ a {
     font-weight: bold;
     font-size: 1.7rem;
     display: block;
+
+    &:active {
+        -webkit-tap-highlight-color: transparent;
+    }
 
     &--primary {
         background-color: $themeBlack;
@@ -151,6 +160,83 @@ a {
     }
 }
 
+.badge {
+    background-color: $themeLightYellow;
+    color: $themeBrown;
+    display: inline-block;
+    padding: 0.7rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.card {
+    text-align: left;
+
+    &__cover-container__image {
+        filter: brightness(100%);
+        -webkit-filter: brightness(100%);
+        max-width: 100%;
+        height: auto;
+        border: 1px solid $themeGrey;
+        transition: filter 0.3s ease-in-out;
+        -webkit-transition: filter 0.3s ease-in-out;
+        -moz-transition: filter 0.3s ease-in-out;
+        -o-transition: filter 0.3s ease-in-out;
+        -ms-transition: filter 0.3s ease-in-out;
+    }
+
+    &__details {
+        &__title {
+            font-family: $fontRaleway;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 0.5rem;
+        }
+
+        .creators {
+            .list__item {
+                display: inline;
+                color: $themeGrey;
+                font-size: 1.2rem;
+            }
+        }
+
+        .rating {
+            &__number {
+                color: $themeOrange;
+                font-weight: bold;
+                font-size: 1.6rem;
+            }
+
+            &__stars {
+                color: $themeLightOrange;
+                display: inline-flex;
+                gap: 0.2rem;
+                font-size: 1.2rem;
+            }
+
+            &__reviews {
+                color: $themeGrey;
+                font-size: 1.4rem;
+                margin-left: 0.4rem;
+            }
+        }
+
+        .price {
+            margin: 0.6rem 0;
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+    }
+
+    &:hover {
+        .card__cover-container__image {
+            filter: brightness(80%);
+            -webkit-filter: brightness(80%);
+        }
+    }
+}
+
 // Components
 // - alert (notification)
 .alert {
@@ -159,7 +245,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 2rem 2.4rem;
 
     @media screen and (min-width: 768px) {
         position: relative;
@@ -205,11 +291,50 @@ a {
 // - header with navigation
 .header {
     grid-area: header;
-    padding: 2rem;
+    z-index: 99;
+    padding: 1.2rem 1.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    font-size: 2.4rem;
+    font-weight: bold;
 
-    .logo {
-        max-width: 6rem;
+    .nav {
+        &__button {
+            padding: 0;
+            font-size: inherit;
+        }
+
+        &__list {
+            display: flex;
+            align-items: center;
+
+            &__link {
+                color: $themeBlack;
+                font-size: 2.2rem;
+                padding: 0 0.6rem;
+            }
+
+            .list__item {
+                text-align: center;
+
+                &:nth-child(even) {
+                    flex-grow: 100;
+                }
+                &:nth-child(odd) {
+                    flex-grow: auto;
+                }
+            }
+        }
+    }
+
+    .logo-holder {
+        display: flex;
+        justify-content: center;
+
+        .logo {
+            width: 7rem;
+            max-width: 7rem;
+            margin-left: 10vw;
+        }
     }
 }
 
@@ -300,9 +425,55 @@ a {
     }
 }
 
+// - accordion
+.accordion {
+    &__element {
+        border-top: 1px solid $themeLightGrey;
+
+        &__toggler {
+            border: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1.5rem 0;
+            background-color: $themeWhite;
+
+            .accordion-title {
+                font-family: $fontRaleway;
+                text-align: left;
+            }
+
+            &::after {
+                content: "\F282";
+                text-align: right;
+                font-family: "bootstrap-icons";
+                font-weight: 800;
+                font-size: 1.3rem;
+                -webkit-transition: 0.2s;
+                -o-transition: 0.2s;
+                transition: 0.2s;
+            }
+
+            &.active::after {
+                -webkit-transform: rotate(-180deg);
+                -ms-transform: rotate(-180deg);
+                transform: rotate(-180deg);
+            }
+        }
+
+        &__content {
+            padding-bottom: 2.8rem;
+        }
+    }
+
+    &:last-of-type {
+        border-bottom: 1px solid $themeLightGrey;
+    }
+}
+
 // - section
 .section {
-    padding: 2rem;
+    padding: 2rem 2.4rem;
     margin-bottom: 4rem;
     text-align: center;
 
@@ -319,7 +490,7 @@ a {
     }
 
     &__title {
-        margin: 1.4rem 0 2rem;
+        margin-bottom: 2rem;
         font-size: 2.4rem;
     }
 
@@ -345,19 +516,61 @@ a {
     }
 }
 
-// Partner logos section
-.partner-logos {
-    .section {
-        &__list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem 4rem;
+// Hero section
+.hero {
+    padding: 0;
 
-            .logo {
-                vertical-align: middle;
+    &__image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    &__content {
+        padding: 2rem 2.4rem;
+        text-align: left;
+
+        &__title {
+            font-size: 2.4rem;
+            margin-top: 0;
+        }
+
+        &__description {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__search-opener {
+        padding: 0 2.4rem;
+
+        .btn {
+            display: block;
+            padding: 1.5rem 1.2rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .text {
+                &--grey {
+                    color: $themeGrey;
+                }
             }
+
+            .icon {
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+// "Students are watching" section
+.tutorials {
+    .section {
+        &__title {
+            text-align: left;
+            font-family: $fontRaleway;
+            font-size: 2.4rem;
+            font-weight: 800;
         }
     }
 }
@@ -414,15 +627,19 @@ a {
                 min-width: 17rem;
 
                 &__item {
+                    font-size: 1.4rem;
+                    padding-bottom: 0;
+
                     &__info {
                         font-size: 1.2rem;
                         color: $themeGrey;
+                        font-weight: normal;
                     }
 
                     &__link {
                         color: $themePurple;
                         text-decoration: underline;
-                        font-weight: 800;
+                        font-weight: 700;
                         margin: 1.8rem 0 0.6rem;
                         display: inline-block;
 
@@ -431,6 +648,23 @@ a {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+// Partner logos section
+.partner-logos {
+    .section {
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem 4rem;
+
+            .logo {
+                vertical-align: middle;
             }
         }
     }
@@ -446,7 +680,7 @@ a {
     line-height: initial;
     background-color: $themeBlack;
     color: $themeWhite;
-    padding: 2rem;
+    padding: 2rem 2.4rem 3rem;
 
     @media screen and (min-width: $breakpointMobile) {
         padding: 3.6rem 5rem;

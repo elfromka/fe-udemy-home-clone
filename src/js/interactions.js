@@ -1,19 +1,5 @@
 "use strict";
 
-// Elements - event fireres
-// - modal (language changer)
-const documentBody = document.getElementById("root");
-
-const modal = document.getElementById("modalWrapper");
-const modalCloseButton = document.getElementById("modalClose");
-
-const languageChangerOpenButtons =
-    document.getElementsByClassName("language-changer");
-
-// - alert
-const alertDismissButton = document.getElementById("alertDismiss");
-const alertElement = alertDismissButton.parentElement;
-
 // Functions
 /**
  * Close modal when visitor clicks outside of it.
@@ -40,11 +26,33 @@ const closeWhenClickedOutside = (elementId) => {
 };
 
 /**
- * Display modal.
+ * Display modal with content.
+ *
+ * @summary - loads the modal with a certain type of content (here: language list, search). A "data-content-load" attribute MUST be set on the calle (button, etc.) which needs to be the same as the contents' components name.
  * @param {Event} e - data about the click action and about the clicked element itself
  */
 const openModal = (e) => {
     e.preventDefault();
+
+    const checkLoadableContent = e.target.dataset.contentLoad;
+    const documentBody = document.getElementById("root");
+    const modal = document.getElementById("modalWrapper");
+
+    (async () => {
+        const loadModalContent = await loadHtml(
+            "modalContent",
+            "components",
+            checkLoadableContent
+        );
+
+        if (loadModalContent) {
+            const modalCloseButton = document.getElementById("modalClose");
+
+            if (modalCloseButton) {
+                modalCloseButton.addEventListener("click", closeModal);
+            }
+        }
+    })();
 
     documentBody.addEventListener(
         "click",
@@ -52,7 +60,6 @@ const openModal = (e) => {
     );
 
     modal.classList.remove("d-none");
-
     documentBody.classList.add("overflow-hidden");
 };
 
@@ -62,6 +69,11 @@ const openModal = (e) => {
  */
 const closeModal = (e) => {
     e.preventDefault();
+
+    const documentBody = document.getElementById("root");
+    const modal = document.getElementById("modalWrapper");
+
+    removeHtml("modalContent");
 
     documentBody.removeEventListener(
         "click",
@@ -79,14 +91,60 @@ const closeModal = (e) => {
 const dismissAlert = (e) => {
     e.preventDefault();
 
+    // - alert
+    const alertDismissButton = document.getElementById("alertDismiss");
+    const alertElement = alertDismissButton.parentElement;
+
     alertElement.remove();
 };
 
-// Event listeners
-[...languageChangerOpenButtons].forEach((languageChangerOpenButton) => {
-    languageChangerOpenButton.addEventListener("click", openModal);
-});
+/**
+ * Set open/close actions for accordion items if accordion exists on the loaded page.
+ *
+ * @return {boolean} - if click events were set successfully: true, else false
+ */
+const accordionItemsTogglers = () => {
+    const accordionElementTogglers = document.querySelectorAll(
+        "[data-accordion-action]"
+    );
 
-modalCloseButton.addEventListener("click", closeModal);
+    if (!accordionElementTogglers.length) {
+        return false;
+    }
 
-alertDismissButton.addEventListener("click", dismissAlert);
+    accordionElementTogglers.forEach((accordionToggler) => {
+        accordionToggler.addEventListener("click", () => {
+            const accordionContent = accordionToggler.nextElementSibling;
+
+            if (!accordionContent) {
+                accordionToggler.classList.toggle("active");
+                accordionContent.classList.toggle("d-none");
+            }
+        });
+    });
+
+    return true;
+};
+
+/**
+ * Add event listeners after the whole DOM/the page is loaded.
+ */
+const loadPageEventListeners = () => {
+    const alertDismissButton = document.getElementById("alertDismiss");
+    const languageChangerOpenButtons =
+        document.getElementsByClassName("language-changer");
+
+    if (alertDismissButton) {
+        alertDismissButton.addEventListener("click", dismissAlert);
+    }
+
+    if (languageChangerOpenButtons.length) {
+        [...languageChangerOpenButtons].forEach((languageChangerOpenButton) => {
+            languageChangerOpenButton.addEventListener("click", openModal);
+        });
+    }
+
+    accordionItemsTogglers();
+};
+
+loadPageEventListeners();
