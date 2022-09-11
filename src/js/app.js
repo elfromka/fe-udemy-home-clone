@@ -114,7 +114,7 @@ Promise.all([
     loadHtml("root", "components", "modal"),
     loadHtml("root", "pages", "home", {
         parentId: "wrapper",
-        children: ["alert", "header", "main", "footer"],
+        children: ["side-nav", "alert", "header", "main", "footer"],
     }),
 ])
     .then(

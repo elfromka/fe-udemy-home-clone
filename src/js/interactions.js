@@ -1,35 +1,19 @@
 "use strict";
 
 // Functions
+
 /**
- * Close modal when visitor clicks outside of it.
- * //TODO HOTFIX - re-check closing modal on click outside (event bubbling) - event listeners
- *
- * @param {string} elementId - the HTML elements' ID to get the that element which shouldn't be counted
- * as clicked outside (language-changer buttons and the modal itself without the backdrop)
- *
- * @return {Function} - returns an object - currying
+ * Closes alert/notification from the top of the page.
+ * @param {Event} e - data about the click action and about the clicked element itself
  */
-const closeWhenClickedOutside = (elementId) => {
-    // console.log("still here");
+const dismissAlert = (e) => {
+    e.preventDefault();
 
-    return (e) => {
-        // checks if the clicked element is from inside the modal
-        const isFromModal = document
-            .getElementById(elementId)
-            .contains(e.target);
+    // - alert
+    const alertDismissButton = document.getElementById("alertDismiss");
+    const alertElement = alertDismissButton.parentElement;
 
-        // checks if the clicked target is a modal opener from outside before click
-        const isModalOpener = [
-            ...document.querySelectorAll("[data-content-load]"),
-        ].some((el) => el.contains(e.target));
-
-        // if clicked outside of modal, or not on the
-        // modal opener buttons were found, close the modal
-        if (!isFromModal && !isModalOpener) {
-            closeModal(e);
-        }
-    };
+    alertElement.remove();
 };
 
 /**
@@ -92,17 +76,70 @@ const closeModal = (e) => {
 };
 
 /**
- * Closes alert/notification from the top of the page.
- * @param {Event} e - data about the click action and about the clicked element itself
+ * Close modal when visitor clicks outside of it.
+ * //TODO HOTFIX - re-check closing modal on click outside (event bubbling) - event listeners
+ *
+ * @param {string} elementId - the HTML elements' ID to get the that element which shouldn't be counted
+ * as clicked outside (language-changer buttons and the modal itself without the backdrop)
+ *
+ * @return {Function} - returns an object - currying
  */
-const dismissAlert = (e) => {
+const closeWhenClickedOutside = (elementId) => {
+    // console.log("still here");
+
+    return (e) => {
+        // checks if the clicked element is from inside the modal
+        const isFromModal = document
+            .getElementById(elementId)
+            .contains(e.target);
+
+        // checks if the clicked target is a modal opener from outside before click
+        const isModalOpener = [
+            ...document.querySelectorAll("[data-content-load]"),
+        ].some((el) => el.contains(e.target));
+
+        // if clicked outside of modal, or not on the
+        // modal opener buttons were found, close the modal
+        if (!isFromModal && !isModalOpener) closeModal(e);
+    };
+};
+
+const sideNavActions = (e, action = "open") => {
     e.preventDefault();
+    const sideNavigationElement = document.getElementById("sideNavigation");
 
-    // - alert
-    const alertDismissButton = document.getElementById("alertDismiss");
-    const alertElement = alertDismissButton.parentElement;
+    if (!sideNavigationElement) return false;
 
-    alertElement.remove();
+    const documentBody = document.getElementById("root");
+    const backDrop = document.getElementById("backdrop");
+
+    if (action === "close") {
+        sideNavigationElement.style.width = "0";
+        documentBody.classList.remove("overflow-hidden");
+        backDrop.classList.add("d-none");
+
+        setTimeout(() => {
+            sideNavigationElement.firstElementChild.classList.add =
+                "visibility-hidden";
+            sideNavigationElement.firstElementChild.classList.add =
+                "opacity-low";
+        }, 250);
+
+        return true;
+    }
+
+    sideNavigationElement.style.width = "65vw";
+    documentBody.classList.add("overflow-hidden");
+    backDrop.classList.remove("d-none");
+
+    setTimeout(() => {
+        sideNavigationElement.firstElementChild.classList.remove(
+            "visibility-hidden"
+        );
+        sideNavigationElement.firstElementChild.classList.remove("opacity-low");
+    }, 250);
+
+    return true;
 };
 
 /**
@@ -115,9 +152,7 @@ const accordionItemsTogglers = () => {
         "[data-accordion-action]"
     );
 
-    if (!accordionElementTogglers.length) {
-        return false;
-    }
+    if (!accordionElementTogglers.length) return false;
 
     accordionElementTogglers.forEach((accordionToggler) => {
         accordionToggler.addEventListener("click", () => {
@@ -139,17 +174,27 @@ const accordionItemsTogglers = () => {
 const loadPageEventListeners = () => {
     const alertDismissButton = document.getElementById("alertDismiss");
     const modalOpeners = document.querySelectorAll("[data-content-load]");
+    const sideNavOpener = document.querySelector(
+        '[data-element-open="side-nav"]'
+    );
 
+    // alert from top of the page
     if (alertDismissButton) {
         alertDismissButton.addEventListener("click", dismissAlert);
     }
 
+    if (sideNavOpener) {
+        sideNavOpener.addEventListener("click", sideNavActions);
+    }
+
+    // modal openers (language changer, search)
     if (modalOpeners.length) {
         [...modalOpeners].forEach((modalOpener) => {
             modalOpener.addEventListener("click", openModal);
         });
     }
 
+    // accordion
     accordionItemsTogglers();
 };
 
