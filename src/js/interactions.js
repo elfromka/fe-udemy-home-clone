@@ -106,9 +106,20 @@ const closeWhenClickedOutside = (elementId) => {
 
 const sideNavActions = (e, action = "open") => {
     e.preventDefault();
+    const sideNavigationCloser = document.querySelector(
+        '[data-element-close="side-nav"]'
+    );
     const sideNavigationElement = document.getElementById("sideNavigation");
 
-    if (!sideNavigationElement) return false;
+    if (!sideNavigationElement || !sideNavigationCloser) return false;
+
+    sideNavigationCloser.addEventListener(
+        "click",
+        () => {
+            sideNavActions(e, "close");
+        },
+        true
+    );
 
     const documentBody = document.getElementById("root");
     const backDrop = document.getElementById("backdrop");
@@ -118,17 +129,23 @@ const sideNavActions = (e, action = "open") => {
         documentBody.classList.remove("overflow-hidden");
         backDrop.classList.add("d-none");
 
+        sideNavigationCloser.removeEventListener("click", sideNavActions, true);
+
         setTimeout(() => {
             sideNavigationElement.firstElementChild.classList.add =
                 "visibility-hidden";
             sideNavigationElement.firstElementChild.classList.add =
                 "opacity-low";
+
+            sideNavigationCloser.classList.add("visibility-hidden");
+            sideNavigationCloser.classList.add("opacity-low");
         }, 250);
 
         return true;
     }
 
-    sideNavigationElement.style.width = "65vw";
+    // sideNavigationElement.style.width = "30rem";
+    sideNavigationElement.style.width = "70vw";
     documentBody.classList.add("overflow-hidden");
     backDrop.classList.remove("d-none");
 
@@ -136,7 +153,10 @@ const sideNavActions = (e, action = "open") => {
         sideNavigationElement.firstElementChild.classList.remove(
             "visibility-hidden"
         );
+
         sideNavigationElement.firstElementChild.classList.remove("opacity-low");
+        sideNavigationCloser.classList.remove("visibility-hidden");
+        sideNavigationCloser.classList.remove("opacity-low");
     }, 250);
 
     return true;
@@ -158,7 +178,7 @@ const accordionItemsTogglers = () => {
         accordionToggler.addEventListener("click", () => {
             const accordionContent = accordionToggler.nextElementSibling;
 
-            if (!accordionContent) {
+            if (accordionContent) {
                 accordionToggler.classList.toggle("active");
                 accordionContent.classList.toggle("d-none");
             }

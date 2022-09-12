@@ -26,7 +26,7 @@ html {
 body {
     font-family: $fontRaleway;
     height: 100vh;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.4;
 }
@@ -101,12 +101,16 @@ a {
 // - buttons
 .btn {
     border: 0;
-    padding: 1.3rem 0;
+    padding: 1.3rem 1rem;
     background-color: transparent;
     cursor: pointer;
     font-weight: bold;
     font-size: 1.7rem;
     display: block;
+
+    @media screen and (min-width: $breakpointTablet) {
+        display: inline-block;
+    }
 
     &:active {
         -webkit-tap-highlight-color: transparent;
@@ -124,7 +128,7 @@ a {
     &--secondary {
         background-color: transparent;
         border: 0.1rem solid $themeBlack;
-        padding: 0.9rem 0;
+        // padding: 0.9rem 0;
         font-size: 1.3rem;
         font-weight: 800;
         color: $themeBlack;
@@ -264,8 +268,9 @@ a {
     align-items: center;
     justify-content: center;
     padding: 2rem 2.4rem;
+    font-size: 1.4rem;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $breakpointTablet) {
         position: relative;
     }
 
@@ -310,7 +315,7 @@ a {
 .header {
     grid-area: header;
     z-index: 99;
-    padding: 1.2rem 1.5rem;
+    padding: 1.1rem 1.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
     font-size: 2.4rem;
     font-weight: bold;
@@ -376,6 +381,7 @@ a {
         background-color: $themeWhite;
         top: 0;
         bottom: 0;
+        overflow-y: auto;
 
         @media screen and (min-width: $breakpointMobile) {
             position: absolute;
@@ -509,6 +515,20 @@ a {
 }
 
 // - side-nav (mobile)
+.side-nav-closer {
+    padding: 0.9rem 1rem 0.59rem;
+    z-index: 104;
+    position: absolute;
+    overflow-y: auto;
+    left: 74vw;
+    top: 2vh;
+    border-radius: 50%;
+    border: 0;
+    font-size: 3rem;
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+}
+
 .side-nav {
     position: fixed;
     top: 0;
@@ -518,6 +538,8 @@ a {
     background-color: $themeWhite;
     z-index: 104;
     height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 4rem;
 
     &__content {
         transition: 0.2s all ease-in-out;
@@ -536,10 +558,28 @@ a {
 
             &__item {
                 padding: 0.8rem 1.6rem;
-                color: $themeBlack;
+
+                & > * {
+                    color: $themeBlack;
+                }
 
                 &__link {
                     color: $themePurple;
+                }
+            }
+        }
+
+        .tree {
+            .list__item {
+                display: flex;
+                justify-content: space-between;
+
+                &::after {
+                    -webkit-text-stroke: 0.07rem;
+                    font-size: 1.2rem;
+                    content: "\F285";
+                    margin-left: 1rem;
+                    font-family: "bootstrap-icons";
                 }
             }
         }
@@ -576,6 +616,7 @@ a {
             .accordion-title {
                 font-family: $fontRaleway;
                 text-align: left;
+                font-size: 1.4rem;
             }
 
             &::after {
@@ -587,6 +628,7 @@ a {
                 -webkit-transition: 0.2s;
                 -o-transition: 0.2s;
                 transition: 0.2s;
+                -webkit-text-stroke: 0.07rem;
             }
 
             &.active::after {
@@ -616,21 +658,41 @@ a {
         height: auto;
         max-width: 100%;
         padding: 0 2rem;
+
+        @media screen and (min-width: $breakpointTablet) {
+            margin-bottom: 1.6rem;
+        }
     }
 
     &__heading-image {
         max-width: 26rem;
         margin: 1.4rem 0 1rem 0;
         display: inline-block;
+
+        @media screen and (min-width: $breakpointTablet) {
+            display: block;
+            margin: auto;
+        }
     }
 
     &__title {
         margin-bottom: 2rem;
         font-size: 2.4rem;
+
+        @media screen and (min-width: $breakpointTablet) {
+            font-size: 3rem;
+        }
     }
 
     &__body {
         margin-bottom: 2rem;
+        max-width: 60rem;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media screen and (min-width: $breakpointTablet) {
+            font-size: 1.7rem;
+        }
     }
 
     &--bg-light-grey {
@@ -647,6 +709,10 @@ a {
 
         .section__title {
             margin-top: 0;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 2.4rem;
+            }
         }
     }
 }
@@ -724,8 +790,39 @@ a {
             flex-wrap: wrap;
             gap: 0.8rem;
 
+            @media screen and (min-width: $breakpointTablet) {
+                text-align: left;
+                gap: 3rem;
+                justify-content: space-between;
+            }
+
             .list__item {
                 display: inline;
+
+                @media screen and (min-width: $breakpointTablet) {
+                    flex-grow: 1;
+                    flex-basis: 23%;
+                    min-width: 23%;
+                    max-width: 30%;
+                    transition: all 0.5s ease;
+
+                    &:hover {
+                        img {
+                            transform: scale(1.06);
+                        }
+                    }
+
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                        margin-bottom: 1rem;
+                    }
+                }
+
+                &__link {
+                    color: $themeBlack;
+                    font-weight: 800;
+                }
 
                 .btn {
                     font-weight: 900;
@@ -750,6 +847,10 @@ a {
             justify-content: space-between;
             align-items: center;
             text-align: left;
+
+            @media screen and (min-width: $breakpointTablet) {
+                max-width: unset;
+            }
 
             .list__item__title {
                 font-family: $fontRaleway;
@@ -786,6 +887,10 @@ a {
             }
         }
     }
+
+    .link-wrapper {
+        display: flex;
+    }
 }
 
 // Partner logos section
@@ -817,8 +922,8 @@ a {
     color: $themeWhite;
     padding: 2rem 2.4rem 3rem;
 
-    @media screen and (min-width: $breakpointMobile) {
-        padding: 3.6rem 5rem;
+    @media screen and (min-width: $breakpointTablet) {
+        padding: 3rem 2.4rem;
 
         &__logo-copyright {
             display: flex;
@@ -827,9 +932,14 @@ a {
         }
     }
 
+    @media screen and (min-width: $breakpointDesktop) {
+        padding: 3.2rem 5rem;
+    }
+
     &__actions {
-        @media screen and (min-width: $breakpointMobile) {
+        @media screen and (min-width: $breakpointTablet) {
             display: flex;
+            margin-bottom: 3.4rem;
             justify-content: space-between;
         }
 
@@ -846,12 +956,16 @@ a {
         .links {
             margin: 0 0 2.8rem 0;
 
-            @media screen and (min-width: $breakpointMobile) {
+            @media screen and (min-width: $breakpointTablet) {
                 display: flex;
                 flex-wrap: wrap;
                 flex: 1;
-                gap: 10%;
+                gap: 17%;
                 order: 1;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                gap: 10.5%;
             }
 
             .list {
@@ -903,14 +1017,14 @@ a {
 }
 
 // tablet
-@media (min-width: $breakpointMobile) and (max-width: $breakpointTablet) {
+@media (min-width: $breakpointMobile) and (max-width: $breakpointDesktop) {
     .d-tablet-none {
         display: none;
     }
 }
 
 // desktop
-@media screen and (min-width: $breakpointTablet) {
+@media screen and (min-width: $breakpointDesktop) {
     .d-desktop-none {
         display: none;
     }
