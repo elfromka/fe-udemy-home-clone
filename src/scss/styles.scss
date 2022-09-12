@@ -64,12 +64,12 @@ a {
 
 // Utility classes
 .container {
-    max-width: 80rem;
+    max-width: 100rem;
     margin: auto;
 }
 
 .container-fluid {
-    max-width: 120rem;
+    max-width: 128rem;
     margin: auto;
 }
 
@@ -527,6 +527,10 @@ a {
     font-size: 3rem;
     transition: 0.2s all ease-in-out;
     cursor: pointer;
+
+    @media (min-width: $breakpointMobile) {
+        left: 32rem;
+    }
 }
 
 .side-nav {
@@ -540,6 +544,10 @@ a {
     height: 100vh;
     overflow-y: auto;
     padding-bottom: 4rem;
+
+    @media (min-width: $breakpointMobile) {
+        max-width: 30rem;
+    }
 
     &__content {
         transition: 0.2s all ease-in-out;
@@ -654,44 +662,67 @@ a {
     margin-bottom: 4rem;
     text-align: center;
 
-    &__image {
-        height: auto;
-        max-width: 100%;
-        padding: 0 2rem;
+    @media (min-width: $breakpointDesktop) {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        align-items: center;
+    }
 
-        @media screen and (min-width: $breakpointTablet) {
-            margin-bottom: 1.6rem;
+    &__cover,
+    &__content {
+        @media (min-width: $breakpointDesktop) {
+            flex: 1;
         }
     }
 
-    &__heading-image {
-        max-width: 26rem;
-        margin: 1.4rem 0 1rem 0;
-        display: inline-block;
+    &__cover {
+        &__image {
+            height: auto;
+            max-width: 100%;
+            padding: 0 2rem;
 
-        @media screen and (min-width: $breakpointTablet) {
-            display: block;
-            margin: auto;
+            @media screen and (min-width: $breakpointTablet) {
+                margin-bottom: 1.6rem;
+            }
         }
     }
 
-    &__title {
-        margin-bottom: 2rem;
-        font-size: 2.4rem;
+    &__content {
+        &__heading-image {
+            max-width: 26rem;
+            margin: 1.4rem 0 1rem 0;
+            display: inline-block;
 
-        @media screen and (min-width: $breakpointTablet) {
-            font-size: 3rem;
+            @media screen and (min-width: $breakpointTablet) {
+                display: block;
+                margin: auto;
+            }
+
+            @media (min-width: $breakpointDesktop) {
+                margin-left: unset;
+                margin-bottom: 1rem;
+            }
         }
-    }
 
-    &__body {
-        margin-bottom: 2rem;
-        max-width: 60rem;
-        margin-left: auto;
-        margin-right: auto;
+        &__title {
+            margin-bottom: 2rem;
+            font-size: 2.4rem;
 
-        @media screen and (min-width: $breakpointTablet) {
-            font-size: 1.7rem;
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 3rem;
+            }
+        }
+
+        &__body {
+            margin-bottom: 2rem;
+            max-width: 60rem;
+            margin-left: auto;
+            margin-right: auto;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 1.7rem;
+            }
         }
     }
 
@@ -699,16 +730,45 @@ a {
         background: $themeLightestGrey;
         padding: 3.4rem 2rem;
 
+        @media (min-width: $breakpointDesktop) {
+            padding: 2rem;
+            display: block;
+        }
+
         .list {
+            @media (min-width: $breakpointTablet) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: left;
+            }
+
             &__item {
                 padding-bottom: 1.2rem;
                 font-size: 1.6rem;
                 font-weight: 800;
+                margin-right: 1rem;
+
+                @media (min-width: $breakpointTablet) {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-weight: 700;
+
+                    .icon {
+                        padding: 1.1rem 1.5rem;
+                        background-color: $themeLightGrey;
+                        border-radius: 50%;
+                        margin-right: 1.6rem;
+                    }
+                }
             }
         }
 
         .section__title {
             margin-top: 0;
+            text-align: center;
+            margin-bottom: 1.4rem;
 
             @media screen and (min-width: $breakpointTablet) {
                 font-size: 2.4rem;
@@ -721,6 +781,7 @@ a {
 .hero {
     padding: 0;
     margin-bottom: 1rem;
+    position: relative;
 
     &__image {
         max-width: 100%;
@@ -730,10 +791,24 @@ a {
     &__content {
         padding: 2rem 2.4rem;
         text-align: left;
+        background-color: $themeWhite;
+
+        @media (min-width: $breakpointMobile) {
+            width: auto;
+            position: absolute;
+            top: 7%;
+            left: 5%;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+            max-width: 50%;
+        }
 
         &__title {
             font-size: 2.4rem;
             margin-top: 0;
+
+            @media (min-width: $breakpointMobile) {
+                font-size: 3.2rem;
+            }
         }
 
         &__description {
@@ -779,53 +854,55 @@ a {
 // Top categories section
 .top-categories {
     .section {
-        &__title {
-            font-family: $fontRaleway;
-            font-weight: 800;
-            text-align: left;
-        }
-
-        &__list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-
-            @media screen and (min-width: $breakpointTablet) {
+        &__content {
+            &__title {
+                font-family: $fontRaleway;
+                font-weight: 800;
                 text-align: left;
-                gap: 3rem;
-                justify-content: space-between;
             }
 
-            .list__item {
-                display: inline;
+            &__list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.8rem;
 
                 @media screen and (min-width: $breakpointTablet) {
-                    flex-grow: 1;
-                    flex-basis: 23%;
-                    min-width: 23%;
-                    max-width: 30%;
-                    transition: all 0.5s ease;
+                    text-align: left;
+                    gap: 3rem;
+                    justify-content: space-between;
+                }
 
-                    &:hover {
+                .list__item {
+                    display: inline;
+
+                    @media screen and (min-width: $breakpointTablet) {
+                        flex-grow: 1;
+                        flex-basis: 23%;
+                        min-width: 23%;
+                        max-width: 30%;
+                        transition: all 0.5s ease;
+
+                        &:hover {
+                            img {
+                                transform: scale(1.06);
+                            }
+                        }
+
                         img {
-                            transform: scale(1.06);
+                            max-width: 100%;
+                            height: auto;
+                            margin-bottom: 1rem;
                         }
                     }
 
-                    img {
-                        max-width: 100%;
-                        height: auto;
-                        margin-bottom: 1rem;
+                    &__link {
+                        color: $themeBlack;
+                        font-weight: 800;
                     }
-                }
 
-                &__link {
-                    color: $themeBlack;
-                    font-weight: 800;
-                }
-
-                .btn {
-                    font-weight: 900;
+                    .btn {
+                        font-weight: 900;
+                    }
                 }
             }
         }
@@ -862,9 +939,17 @@ a {
                 margin-bottom: 2rem;
                 min-width: 17rem;
 
+                @media screen and (min-width: $breakpointTablet) {
+                    display: block;
+                }
+
                 &__item {
                     font-size: 1.4rem;
                     padding-bottom: 0;
+
+                    @media (min-width: $breakpointTablet) {
+                        display: block;
+                    }
 
                     &__info {
                         font-size: 1.2rem;
@@ -901,7 +986,11 @@ a {
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 1rem 4rem;
+            gap: 0.5rem 4rem;
+
+            .list__item {
+                padding-bottom: 0;
+            }
 
             .logo {
                 vertical-align: middle;

@@ -1,32 +1,29 @@
 <main class="main">
-    <div class="container-fluid">
-        <section class="section hero">
-            <img
-                src="/public/images/sections/b8f46419-eca3-44c1-8ba0-ed2ca89f8884.jpg"
-                alt="Start now!"
-                class="hero__image"
-            />
-            <div class="hero__content">
-                <h1 class="hero__content__title">Learning that gets you</h1>
-                <p class="hero__content__description">
-                    Skills for your present (and your future). Get started with
-                    us.
-                </p>
-            </div>
-            <div class="hero__search-opener">
-                <button
-                    class="btn btn--secondary search-opener"
-                    data-content-load="search"
-                >
-                    What do you want to learn?
-                    <i class="bi bi-search icon"></i>
-                </button>
-            </div>
-        </section>
-    </div>
+    <section class="section container-fluid hero">
+        <img
+            src="/public/images/sections/b8f46419-eca3-44c1-8ba0-ed2ca89f8884.jpg"
+            alt="Start now!"
+            class="hero__image"
+        />
+        <div class="hero__content">
+            <h1 class="hero__content__title">Learning that gets you</h1>
+            <p class="hero__content__description">
+                Skills for your present (and your future). Get started with us.
+            </p>
+        </div>
+        <div class="hero__search-opener d-tablet-none d-desktop-none">
+            <button
+                class="btn btn--secondary search-opener"
+                data-content-load="search"
+            >
+                What do you want to learn?
+                <i class="bi bi-search icon"></i>
+            </button>
+        </div>
+    </section>
     <section class="section">
         <!-- Carousel with subcategories and topics (accordion) -->
-        <ul class="list accordion">
+        <ul class="list accordion d-tablet-none d-desktop-none">
             <li class="list__item accordion__element">
                 <button
                     class="accordion__element__toggler active"
@@ -293,18 +290,23 @@
         </ul>
     </section>
     <section class="section section--bg-light-grey">
-        <div class="container">
-            <h2 class="section__title">Why learn on Udemy?</h2>
+        <div class="container-fluid">
+            <h2 class="section__title d-tablet-none d-desktop-none">
+                Why learn on Udemy?
+            </h2>
             <ul class="section__list list">
-                <li class="list__item">
+                <li class="list__item ad">
+                    <i class="bi bi-play-fill icon d-mobile-none"></i>
                     <p>
                         Learn in-demand skills with over 204,000 video courses
                     </p>
                 </li>
-                <li class="list__item">
+                <li class="list__item ad">
+                    <i class="bi bi-star-fill icon d-mobile-none"></i>
                     <p>Choose courses taught by real-world experts</p>
                 </li>
-                <li class="list__item">
+                <li class="list__item ad">
+                    <i class="bi bi-infinity icon d-mobile-none"></i>
                     <p>
                         Learn at your own pace, with lifetime access on mobile
                         and desktop
@@ -313,48 +315,47 @@
             </ul>
         </div>
     </section>
-    <section class="section tutorials">
+    <section class="section container-fluid tutorials">
         <!-- Students are viewing section -->
-
-        <div class="container-fluid">
+        <div class="section__content">
             <h2 class="section__title">Students are viewing</h2>
-        </div>
-        <div class="card">
-            <div class="card__cover-container">
-                <img
-                    src="/public/images/tutorials/python.jpg"
-                    alt="Learn Python: The Complete Python Programming Course"
-                    class="card__cover-container__image"
-                />
-            </div>
-            <div class="card__details">
-                <h4 class="card__details__title">
-                    Learn Python: The Complete Python Programming Course
-                </h4>
-                <ul class="list creators">
-                    <li class="list__item">Avianash Jai,</li>
-                    <li class="list__item">The Codex</li>
-                </ul>
-                <div class="rating">
-                    <span class="rating__number">4.4</span>
-                    <span class="rating__stars">
-                        <i class="bi bi-star-fill"></i
-                        ><i class="bi bi-star-fill"></i
-                        ><i class="bi bi-star-fill"></i
-                        ><i class="bi bi-star-fill"></i
-                        ><i class="bi bi-star-half"></i>
-                    </span>
-                    <small class="rating__reviews">(3,242)</small>
+            <div class="card">
+                <div class="card__cover-container">
+                    <img
+                        src="/public/images/tutorials/python.jpg"
+                        alt="Learn Python: The Complete Python Programming Course"
+                        class="card__cover-container__image"
+                    />
                 </div>
-                <div class="price">RON209.99</div>
-                <div class="badge">Bestseller</div>
+                <div class="card__details">
+                    <h4 class="card__details__title">
+                        Learn Python: The Complete Python Programming Course
+                    </h4>
+                    <ul class="list creators">
+                        <li class="list__item">Avianash Jai,</li>
+                        <li class="list__item">The Codex</li>
+                    </ul>
+                    <div class="rating">
+                        <span class="rating__number">4.4</span>
+                        <span class="rating__stars">
+                            <i class="bi bi-star-fill"></i
+                            ><i class="bi bi-star-fill"></i
+                            ><i class="bi bi-star-fill"></i
+                            ><i class="bi bi-star-fill"></i
+                            ><i class="bi bi-star-half"></i>
+                        </span>
+                        <small class="rating__reviews">(3,242)</small>
+                    </div>
+                    <div class="price">RON209.99</div>
+                    <div class="badge">Bestseller</div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="section top-categories">
-        <div class="container-fluid">
-            <h2 class="section__title">Top categories</h2>
-            <ul class="section__list list">
+    <section class="section container-fluid top-categories">
+        <div class="section__content">
+            <h2 class="section__content__title">Top categories</h2>
+            <ul class="section__content__list list">
                 <li class="list__item">
                     <a href="#" class="list__item__link d-mobile-none">
                         <img
@@ -579,15 +580,17 @@
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
+    <section class="section container">
+        <div class="section__cover">
             <img
                 src="/public/images/sections/instructor-1x-v3.jpg"
                 alt="Become an instructor"
-                class="section__image"
+                class="section__cover__image"
             />
-            <h2 class="section__title">Become an instructor</h2>
-            <p class="section__body">
+        </div>
+        <div class="section__content">
+            <h2 class="section__content__title">Become an instructor</h2>
+            <p class="section__content__body">
                 Instructors from around the world teach millions of students on
                 Udemy. We provide the tools and skills to teach what you love.
             </p>
@@ -638,20 +641,21 @@
             </a>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
+    <section class="section container">
+        <div class="section__cover">
             <img
                 src="/public/images/sections/ub-1x-v3.jpg"
                 alt="udemy business"
-                class="section__image"
+                class="section__cover__image"
             />
-            <!-- TODO HOTFIX - FIX THIS -->
+        </div>
+        <div class="section__content">
             <img
                 src="/public/images/udemy-logos/logo-ub.svg"
                 alt="Udemy business"
-                class="section__heading-image"
+                class="section__content__heading-image"
             />
-            <p class="section__body">
+            <p class="section__content__body">
                 Get unlimited access to 17,000+ of Udemy's top courses for your
                 team. Learn and improve skills across business, tech, design,
                 and more.
@@ -659,17 +663,19 @@
             <a href="#" class="btn btn--primary">Get Udemy Business</a>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
+    <section class="section container">
+        <div class="section__cover">
             <img
                 src="/public/images/sections/transform-1x-v3.jpg"
                 alt="Transform your life through education"
-                class="section__image"
+                class="section__cover__image"
             />
-            <h2 class="section__title">
+        </div>
+        <div class="section__content">
+            <h2 class="section__content__title">
                 Transform your life through education
             </h2>
-            <p class="section__body">
+            <p class="section__content__body">
                 Learners around the world are launching new careers, advancing
                 in their fields, and enriching their lives.
             </p>
