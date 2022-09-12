@@ -1,5 +1,5 @@
 <header class="header">
-    <nav class="nav">
+    <nav class="nav on-mobile-tablet d-desktop-none">
         <ul class="list nav__list">
             <li class="list__item">
                 <button data-element-open="side-nav" class="btn nav__button">
@@ -24,6 +24,60 @@
                     <i class="bi bi-cart3"></i>
                 </a>
             </li>
+        </ul>
+    </nav>
+    <nav
+        class="nav on-desktop d-mobile-none d-tablet-none"
+        style="justify-content: space-between"
+    >
+        <ul class="list nav__list logo-categories">
+            <li class="list__item">
+                <a href="/" class="logo-holder">
+                    <img
+                        src="/public/images/udemy-logos/logo-udemy.svg"
+                        alt="Udemy logo"
+                        class="logo"
+                    />
+                </a>
+            </li>
+            <li class="list__item">
+                <a href="#" class="nav__list__link">Categories</a>
+            </li>
+        </ul>
+        <form method="get" class="search__box">
+            <button type="submit" class="btn search__box__submit">
+                <i class="bi bi-search" data-content-load="search"></i>
+            </button>
+            <input
+                type="text"
+                class="search__box__input"
+                placeholder="Search for anything"
+            />
+        </form>
+        <ul class="list nav__list account-links">
+            <li class="list__item">
+                <a href="#" class="nav__list__link">Udemy Business</a>
+            </li>
+            <li class="list__item">
+                <a href="#" class="nav__list__link">Teach on Udemy</a>
+            </li>
+            <li class="list__item">
+                <a href="/" class="nav__list__link">
+                    <i class="bi bi-cart3"></i>
+                </a>
+            </li>
+            <li class="list__item">
+                <a href="#" class="btn btn--secondary">Log in</a>
+            </li>
+            <li class="list__item">
+                <a href="#" class="btn btn--primary">Sign up</a>
+            </li>
+            <button
+                data-content-load="languages-list"
+                class="btn btn--secondary"
+            >
+                <i class="bi bi-globe icon"></i>
+            </button>
         </ul>
     </nav>
 </header>
