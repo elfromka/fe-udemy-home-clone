@@ -184,6 +184,94 @@ const closeWhenClickedOutside = (elementId) => {
 };
 
 /**
+ * Set the boundaries of the carousel.
+ *
+ * @summary - blocks the visitor to drag more than it should (out of the carousels' container) from left (before the first item) or right side (after the last item)
+ * @param {object} carouselWrapper - The DOM Node which is the main wrapper of the carousel element - this holds the other element which holds all the items
+ * @param {object} carouselWrapperItems - The DOM Node which is child of the carouselWrapper and holds the actual items
+ */
+const setCarouselBoundaries = (carouselWrapper, carouselWrapperItems) => {
+    const carouselWrapperPositionInfo = carouselWrapper.getBoundingClientRect();
+    const carouselWrapperItemsPositionInfo =
+        carouselWrapperItems.getBoundingClientRect();
+
+    // if the left side (the first elements space) is bigger (no other element is there), - block the drag
+    if (parseInt(carouselWrapperItems.style.left) > 0) {
+        carouselWrapperItems.style.left = 0;
+    } else if (
+        carouselWrapperItemsPositionInfo.right <
+        carouselWrapperPositionInfo.right
+    ) {
+        carouselWrapperItems.style.left = `-${
+            carouselWrapperItemsPositionInfo.width -
+            carouselWrapperPositionInfo.width
+        }px`;
+    }
+};
+
+/**
+ * Initialize carousels on page.
+ * @summary - called on load to initialize (add event listeners) on all carousels which are loaded in the DOM.
+ *
+ * @return {boolean} - if carousels found returns true else false
+ */
+const carouselsInitialization = () => {
+    const carouselWrappers = document.querySelectorAll(".carousel-wrapper");
+    if (!carouselWrappers) return false;
+
+    // keep track of users' mouse down and up
+    let isPressedDown = false;
+
+    // retrieve if the mouse is clicked or not at all (button is released or not)
+    window.addEventListener("mouseup", () => {
+        isPressedDown = false;
+    });
+
+    carouselWrappers.forEach((carouselWrapper) => {
+        // the actual items holder/wrapper, this has the items (cards-tutorials)
+        const carouselWrapperItems = carouselWrapper.firstElementChild;
+        if (!carouselWrapperItems) return false;
+
+        // to set grid-template-columns dynamically
+        const totalItems = carouselWrapperItems.childElementCount;
+        carouselWrapperItems.style.setProperty(
+            "grid-template-columns",
+            `repeat(${totalItems}, 23rem)`
+        );
+
+        // x horizonal space of cursor from inner container
+        let cursorHorizontalPosition;
+
+        // on clicking the mouse button, get where the user clicked, change the cursor
+        carouselWrapper.addEventListener("mousedown", (e) => {
+            isPressedDown = true;
+            cursorHorizontalPosition =
+                e.offsetX - carouselWrapperItems.offsetLeft; // get where the user clicked exactly
+            carouselWrapper.style.cursor = "grabbing";
+        });
+
+        // on release, set the grab button as cursor
+        carouselWrapper.addEventListener("mouseup", () => {
+            carouselWrapper.style.cursor = "grab";
+        });
+
+        // moving the cursor in the container
+        carouselWrapper.addEventListener("mousemove", (e) => {
+            if (!isPressedDown) return;
+
+            e.preventDefault();
+            carouselWrapperItems.style.left = `${
+                e.offsetX - cursorHorizontalPosition
+            }px`;
+
+            setCarouselBoundaries(carouselWrapper, carouselWrapperItems);
+        });
+    });
+
+    return true;
+};
+
+/**
  * Set open/close actions for accordion items if accordion exists on the loaded page.
  *
  * @return {boolean} - if click events were set successfully: true, else false
@@ -237,6 +325,9 @@ const loadPageEventListeners = () => {
 
     // accordion
     accordionItemsTogglers();
+
+    // carousels
+    carouselsInitialization();
 };
 
 loadPageEventListeners();

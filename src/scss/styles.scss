@@ -181,6 +181,7 @@ a {
     }
 }
 
+// - badge
 .badge {
     background-color: $themeLightYellow;
     color: $themeBrown;
@@ -190,8 +191,15 @@ a {
     font-weight: 800;
 }
 
+// - card (tutorial)
 .card {
     text-align: left;
+    margin-bottom: 2rem;
+    overflow: hidden;
+
+    &-link {
+        color: $themeBlack;
+    }
 
     &__cover-container__image {
         filter: brightness(100%);
@@ -251,6 +259,8 @@ a {
     }
 
     &:hover {
+        cursor: pointer;
+
         .card__cover-container__image {
             filter: brightness(80%);
             -webkit-filter: brightness(80%);
@@ -307,6 +317,26 @@ a {
             right: 1.4rem;
             top: 1.2rem;
         }
+    }
+}
+
+// - carousel (card tutorials)
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 38rem;
+    max-height: 46rem;
+    overflow: hidden;
+    cursor: grab;
+    margin-top: 2rem;
+
+    &__items {
+        position: absolute;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(5, 23rem);
+        grid-gap: 2rem;
+        pointer-events: none;
     }
 }
 
