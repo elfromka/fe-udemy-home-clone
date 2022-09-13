@@ -246,7 +246,7 @@ const carouselsInitialization = () => {
         const totalItems = carouselWrapperItems.childElementCount;
         carouselWrapperItems.style.setProperty(
             "grid-template-columns",
-            `repeat(${totalItems}, 23rem)`
+            `repeat(${totalItems}, 24rem)`
         );
 
         // x horizonal space of cursor from inner container

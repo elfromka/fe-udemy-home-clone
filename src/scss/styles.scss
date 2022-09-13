@@ -97,11 +97,74 @@ a {
     opacity: 0;
 }
 
+// - Tabs
+.tabs {
+    margin: 1rem auto;
+    height: 60rem;
+    position: relative;
+
+    .tab {
+        display: inline-block;
+
+        &__input[type="radio"] {
+            display: none;
+
+            // if a checkbox with the id starting with "tab" is checked
+            // display the content of it
+            &[id^="tab"]:checked {
+                + .tab__label {
+                    color: $themeBlack;
+                }
+                ~ .tab__content {
+                    display: block;
+                }
+            }
+        }
+
+        &__label {
+            color: $themeGrey;
+            padding: 1rem 0;
+            margin-right: 2rem;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 800;
+        }
+
+        &__content {
+            border: 0.1rem solid $themeLightGrey;
+            position: absolute;
+            left: 0;
+            display: none;
+            padding: 3.2rem;
+            width: 100%;
+            background: $themeWhite;
+
+            &__title {
+                margin-bottom: 1rem;
+                font-family: $fontRaleway;
+                font-size: 2.2rem;
+                font-weight: 800;
+            }
+
+            &__body {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                line-clamp: 3;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                margin-bottom: 1.6rem;
+                max-width: 78rem;
+            }
+        }
+    }
+}
+
 // Elements
 // - buttons
 .btn {
     border: 0;
-    padding: 1.3rem 1rem;
+    padding: 1rem;
     background-color: transparent;
     cursor: pointer;
     font-weight: bold;
@@ -211,7 +274,7 @@ a {
         -webkit-filter: brightness(100%);
         max-width: 100%;
         height: auto;
-        border: 1px solid $themeGrey;
+        border: 0.1rem solid $themeGrey;
         transition: filter 0.3s ease-in-out;
         -webkit-transition: filter 0.3s ease-in-out;
         -moz-transition: filter 0.3s ease-in-out;
@@ -350,7 +413,7 @@ a {
     grid-area: header;
     z-index: 99;
     padding: 1.1rem 1.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 8%), 0 0.4rem 1.2rem rgb(0 0 0 / 8%);
     font-size: 2.4rem;
     font-weight: bold;
 
@@ -404,11 +467,9 @@ a {
                     align-items: center;
 
                     .nav__list {
-                        // position: relative;
-
                         .list__item {
                             margin-right: 1rem;
-                            font-size: 13px;
+                            font-size: 1.3rem;
                             font-weight: 500;
 
                             i {
@@ -420,7 +481,6 @@ a {
                                 font-size: 1.3rem;
                                 min-width: 4rem;
                                 min-height: 4rem;
-                                padding: 1.3rem;
                             }
 
                             .nav__list__link {
@@ -730,7 +790,7 @@ a {
 // - accordion
 .accordion {
     &__element {
-        border-top: 1px solid $themeLightGrey;
+        border-top: 0.1rem solid $themeLightGrey;
 
         &__toggler {
             border: 0;
@@ -772,7 +832,7 @@ a {
     }
 
     &:last-of-type {
-        border-bottom: 1px solid $themeLightGrey;
+        border-bottom: 0.1rem solid $themeLightGrey;
     }
 }
 
@@ -788,7 +848,7 @@ a {
     z-index: 105;
     transition: all 0.15s ease-out;
     padding: 2rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 8%), 0 0.4rem 1.2rem rgb(0 0 0 / 8%);
     text-align: center;
     font-family: $fontRaleway;
     right: 0;
@@ -982,7 +1042,8 @@ a {
             position: absolute;
             top: 7%;
             left: 5%;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+            box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 8%),
+                0 0.4rem 1.2rem rgb(0 0 0 / 8%);
             max-width: 44rem;
         }
 
@@ -1023,7 +1084,21 @@ a {
     }
 }
 
-// "Students are watching" section
+// Categories without accordion
+.categories {
+    .section__content {
+        &__title {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+        }
+        &__body {
+            margin: 0;
+            max-width: unset;
+        }
+    }
+}
+
+// "Students are viewing" section
 .tutorials {
     .section {
         &__title {
