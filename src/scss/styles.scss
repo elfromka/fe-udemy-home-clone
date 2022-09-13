@@ -108,7 +108,7 @@ a {
     font-size: 1.7rem;
     display: block;
 
-    @media screen and (min-width: $breakpointTablet) {
+    @media (min-width: $breakpointTablet) {
         display: inline-block;
     }
 
@@ -131,6 +131,11 @@ a {
         font-size: 1.3rem;
         font-weight: 800;
         color: $themeBlack;
+        width: 100%;
+
+        @media (min-width: $breakpointTablet) {
+            width: auto;
+        }
 
         &:hover {
             background-color: #f5f5f5;
@@ -324,7 +329,7 @@ a {
 .carousel-wrapper {
     position: relative;
     width: 100%;
-    min-height: 38rem;
+    min-height: 30rem;
     max-height: 46rem;
     overflow: hidden;
     cursor: grab;
@@ -712,6 +717,7 @@ a {
                 padding: 1rem 4rem 1rem 1.4rem;
                 font-size: 1.5rem;
                 font-weight: 500;
+                width: auto;
 
                 .icon {
                     margin-right: 0.25rem;
@@ -1124,6 +1130,11 @@ a {
                 &__item {
                     font-size: 1.4rem;
                     padding-bottom: 0;
+                    margin-right: 0;
+
+                    @media (min-width: $breakpointTablet) {
+                        margin-right: 1rem;
+                    }
 
                     @media (min-width: $breakpointTablet) {
                         display: block;
