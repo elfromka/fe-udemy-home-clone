@@ -1,11 +1,17 @@
+@use "../../../common/variables" as var;
+
 .partner-logos {
     .section {
         &__list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             gap: 0.5rem 4rem;
+
+            @media (min-width: var.$breakpointTablet) {
+                justify-content: space-between;
+            }
 
             .list__item {
                 padding-bottom: 0;
