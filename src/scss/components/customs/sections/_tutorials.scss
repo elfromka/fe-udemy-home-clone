@@ -1,0 +1,13 @@
+@use "../../../common/variables" as var;
+
+// "Students are viewing" section
+.tutorials {
+    .section {
+        &__title {
+            text-align: left;
+            font-family: var.$fontRaleway;
+            font-size: 2.4rem;
+            font-weight: 800;
+        }
+    }
+}

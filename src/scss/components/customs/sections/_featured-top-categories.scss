@@ -1,0 +1,74 @@
+@use "../../../common/variables" as var;
+
+.featured-top-categories {
+    .section {
+        &__title {
+            font-family: var.$fontRaleway;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        &__body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+
+            @media screen and (min-width: var.$breakpointTablet) {
+                max-width: unset;
+            }
+
+            .list__item__title {
+                font-family: var.$fontRaleway;
+                font-weight: 800;
+                font-size: 1.5rem;
+            }
+
+            .list {
+                margin-bottom: 2rem;
+                min-width: 17rem;
+
+                @media screen and (min-width: var.$breakpointTablet) {
+                    display: block;
+                }
+
+                &__item {
+                    font-size: 1.4rem;
+                    padding-bottom: 0;
+                    margin-right: 0;
+
+                    @media (min-width: var.$breakpointTablet) {
+                        margin-right: 1rem;
+                    }
+
+                    @media (min-width: var.$breakpointTablet) {
+                        display: block;
+                    }
+
+                    &__info {
+                        font-size: 1.2rem;
+                        color: var.$themeGrey;
+                        font-weight: normal;
+                    }
+
+                    &__link {
+                        color: var.$themePurple;
+                        text-decoration: underline;
+                        font-weight: 700;
+                        margin: 1.8rem 0 0.6rem;
+                        display: inline-block;
+
+                        &:hover {
+                            color: var.$themeOnHoverLink;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .link-wrapper {
+        display: flex;
+    }
+}

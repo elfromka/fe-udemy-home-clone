@@ -1,0 +1,13 @@
+// Categories without accordion
+.categories {
+    .section__content {
+        &__title {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+        }
+        &__body {
+            margin: 0;
+            max-width: unset;
+        }
+    }
+}

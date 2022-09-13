@@ -1,10 +1,15 @@
+@use "../utils/fonts";
+
+// Fonts
 $fontRaleway: "Raleway", sans-serif;
 $fontNotoSerifGeorgian: "Noto Serif Georgian", serif;
 
+// Breakpoints
 $breakpointMobile: "576px";
 $breakpointTablet: "768px";
 $breakpointDesktop: "992px";
 
+// Colors
 $themeBlack: #1c1d1f;
 $themeGrey: #6a6f73;
 $themeLightGrey: #d1d7dc;
@@ -16,8 +21,6 @@ $themeBrown: #3d3c0a;
 $themePurple: #5c34d3;
 $themeWhite: #ffffff;
 $themeModalBackdrop: rgba(28, 29, 31, 0.8);
-
-// Hovers
 $themeOnHoverPrimary: #000000;
 $themeOnHoverSecondary: #f5f5f5;
 $themeOnHoverLink: #401b9c;

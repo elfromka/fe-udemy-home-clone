@@ -1,0 +1,60 @@
+@use "../common/variables" as var;
+
+.search {
+    &__actions {
+        width: 100%;
+        border-bottom: 0.1rem solid var.$themeLightGrey;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+
+        &__input {
+            order: 1;
+            border: 0;
+            font-size: 1.6rem;
+            width: 100%;
+            padding: 0.6rem;
+
+            &:not(:placeholder-shown) + .icon {
+                color: var.$themeBlack;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .icon {
+            order: 0;
+            font-size: 1.8rem;
+            -webkit-text-stroke: 0.07rem;
+            margin-right: 2rem;
+            color: var.$themeGrey;
+        }
+
+        .close-icon {
+            font-size: 3rem;
+            -webkit-text-stroke: 0.07rem;
+            order: 2;
+        }
+    }
+
+    &__matches {
+        padding: 0.3rem 1rem;
+
+        .match {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+
+            &::before {
+                content: "\F52A";
+                padding: 0 1.2rem;
+                font-size: 1.4rem;
+                -webkit-text-stroke: 0.07rem;
+                font-family: "bootstrap-icons";
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+@use "../common/variables" as var;
+
+.accordion {
+    &__element {
+        border-top: 0.1rem solid var.$themeLightGrey;
+
+        &__toggler {
+            border: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1.5rem 0;
+            background-color: var.$themeWhite;
+            cursor: pointer;
+
+            .accordion-title {
+                font-family: var.$fontRaleway;
+                text-align: left;
+                font-size: 1.4rem;
+            }
+
+            &::after {
+                content: "\F282";
+                text-align: right;
+                font-family: "bootstrap-icons";
+                font-weight: 800;
+                font-size: 1.3rem;
+                -webkit-transition: 0.2s;
+                -o-transition: 0.2s;
+                transition: 0.2s;
+                -webkit-text-stroke: 0.07rem;
+            }
+
+            &.active::after {
+                -webkit-transform: rotate(-180deg);
+                -ms-transform: rotate(-180deg);
+                transform: rotate(-180deg);
+            }
+        }
+
+        &__content {
+            padding-bottom: 2.8rem;
+        }
+    }
+
+    &:last-of-type {
+        border-bottom: 0.1rem solid var.$themeLightGrey;
+    }
+}

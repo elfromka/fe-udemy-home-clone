@@ -1,0 +1,58 @@
+@use "../common/variables" as var;
+
+.popover {
+    visibility: hidden;
+    opacity: 0;
+    display: inline-block;
+    position: absolute;
+    max-width: 28rem;
+    min-width: 28rem;
+    top: 5.5rem;
+    z-index: 105;
+    transition: all 0.15s ease-out;
+    padding: 2rem;
+    box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 8%), 0 0.4rem 1.2rem rgb(0 0 0 / 8%);
+    text-align: center;
+    font-family: var.$fontRaleway;
+    right: 0;
+
+    &__header {
+        &__title {
+            font-family: var.$fontRaleway;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+    }
+
+    &__body {
+        &__text {
+            color: var.$themeGrey;
+            font-size: 1.6rem;
+        }
+    }
+
+    &__footer {
+        margin-top: 1.6rem;
+        font-size: 1.4rem;
+        font-weight: 800;
+
+        &__btn {
+            width: 100%;
+        }
+
+        &__link {
+            color: var.$themePurple;
+        }
+    }
+}
+
+[data-popover-open] {
+    position: relative;
+}
+
+[data-popover-open]:hover > .popover {
+    visibility: visible;
+    background-color: var.$themeWhite;
+    opacity: 1;
+    transition: all 0.15s ease-in;
+}

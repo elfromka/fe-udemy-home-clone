@@ -1,0 +1,38 @@
+.wrapper {
+    position: relative;
+    height: inherit;
+    display: grid;
+    grid-template-areas:
+        "alert"
+        "header"
+        "content"
+        "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+}
+
+.container {
+    max-width: 100rem;
+    margin: auto;
+}
+
+.container-fluid {
+    max-width: 128rem;
+    margin: auto;
+}
+
+.alert {
+    grid-area: alert;
+}
+
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: content;
+}
+
+.footer {
+    grid-area: footer;
+}

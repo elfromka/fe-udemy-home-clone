@@ -1,0 +1,46 @@
+@use "../common/variables" as var;
+
+.d-none {
+    display: none;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.opacity-low {
+    opacity: 0;
+}
+
+.backdrop {
+    position: absolute;
+    background: rgba(28, 29, 31, 0.8);
+    width: 100%;
+    height: 100vh;
+    z-index: 103;
+}
+
+// mobile
+@media (max-width: var.$breakpointMobile) {
+    .d-mobile-none {
+        display: none;
+    }
+}
+
+// tablet
+@media (min-width: var.$breakpointMobile) and (max-width: var.$breakpointDesktop) {
+    .d-tablet-none {
+        display: none;
+    }
+}
+
+// desktop
+@media (min-width: var.$breakpointDesktop) {
+    .d-desktop-none {
+        display: none;
+    }
+}

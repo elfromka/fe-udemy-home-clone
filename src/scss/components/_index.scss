@@ -1,0 +1,26 @@
+@forward "accordion";
+@forward "alert";
+@forward "badge";
+@forward "button";
+@forward "card";
+@forward "carousel";
+@forward "footer";
+@forward "header";
+@forward "list";
+@forward "modal";
+@forward "popover";
+@forward "search";
+@forward "section";
+@forward "side-nav";
+@forward "tab";
+
+// custom sections
+@forward "./customs/sections/hero";
+@forward "./customs/sections/categories";
+@forward "./customs/sections/tutorials";
+@forward "./customs/sections/top-categories";
+@forward "./customs/sections/featured-top-categories";
+@forward "./customs/sections/partner-logos";
+
+// custom element content
+@forward "./customs/sections/languages-list";

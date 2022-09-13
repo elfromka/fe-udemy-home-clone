@@ -1,0 +1,94 @@
+@use "../common/variables" as var;
+
+.footer {
+    line-height: initial;
+    background-color: var.$themeBlack;
+    color: var.$themeWhite;
+    padding: 2rem 2.4rem 3rem;
+
+    @media screen and (min-width: var.$breakpointTablet) {
+        padding: 3rem 2.4rem;
+
+        &__logo-copyright {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    @media screen and (min-width: var.$breakpointDesktop) {
+        padding: 3.2rem 5rem;
+    }
+
+    &__actions {
+        @media screen and (min-width: var.$breakpointTablet) {
+            display: flex;
+            margin-bottom: 3.4rem;
+            justify-content: space-between;
+        }
+
+        .button-wrapper {
+            @media screen and (min-width: var.$breakpointMobile) {
+                order: 2;
+            }
+
+            .language-changer:hover {
+                background-color: lighten(var.$themeBlack, 10%);
+            }
+        }
+
+        .links {
+            margin: 0 0 2.8rem 0;
+
+            @media screen and (min-width: var.$breakpointTablet) {
+                display: flex;
+                flex-wrap: wrap;
+                flex: 1;
+                gap: 17%;
+                order: 1;
+            }
+
+            @media screen and (min-width: var.$breakpointDesktop) {
+                gap: 10.5%;
+            }
+
+            .list {
+                &:not(:first-child):not(:last-child) {
+                    margin: 2.8rem 0 0 0;
+                }
+
+                @media screen and (min-width: var.$breakpointMobile) {
+                    &:not(:first-child):not(:last-child) {
+                        margin: 0;
+                    }
+                }
+
+                &__item {
+                    padding-bottom: 1rem;
+
+                    &__link {
+                        color: var.$themeWhite;
+                        font-size: 1.3rem;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        margin-top: 2.5rem;
+    }
+
+    .logo {
+        width: 9rem;
+    }
+
+    .copyright {
+        margin-top: 1rem;
+        display: block;
+    }
+}

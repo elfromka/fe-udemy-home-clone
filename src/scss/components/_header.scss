@@ -1,0 +1,127 @@
+@use "../common/variables" as var;
+
+.header {
+    z-index: 99;
+    padding: 1.1rem 1.5rem;
+    box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 8%), 0 0.4rem 1.2rem rgb(0 0 0 / 8%);
+    font-size: 2.4rem;
+    font-weight: bold;
+
+    .nav {
+        &__button {
+            padding: 0;
+            font-size: inherit;
+            -webkit-text-stroke: 0.07rem;
+        }
+
+        &__list {
+            display: flex;
+            align-items: center;
+
+            &__link {
+                color: var.$themeBlack;
+                font-size: 2rem;
+                padding: 0 0.6rem;
+                -webkit-text-stroke: 0.07rem;
+                cursor: pointer;
+            }
+
+            .list__item {
+                text-align: center;
+
+                &:nth-child(even) {
+                    flex-grow: 100;
+                }
+            }
+        }
+        .logo-holder {
+            display: flex;
+            justify-content: center;
+
+            .logo {
+                width: 7rem;
+                max-width: 7rem;
+                margin-left: 8vw;
+            }
+        }
+    }
+
+    @media (min-width: var.$breakpointDesktop) {
+        & {
+            padding-left: 2rem;
+            padding-right: 2rem;
+
+            .nav {
+                &.on-desktop {
+                    display: flex;
+                    align-items: center;
+
+                    .nav__list {
+                        .list__item {
+                            margin-right: 1rem;
+                            font-size: 1.3rem;
+                            font-weight: 500;
+
+                            i {
+                                -webkit-text-stroke: 0.07rem;
+                                font-size: 2rem;
+                            }
+
+                            .btn {
+                                font-size: 1.3rem;
+                                min-width: 4rem;
+                                min-height: 4rem;
+                            }
+
+                            .nav__list__link {
+                                color: var.$themeBlack;
+                                font-size: 1.3rem;
+                                -webkit-text-stroke: unset;
+
+                                &:hover {
+                                    color: var.$themePurple;
+                                }
+                            }
+                        }
+                    }
+
+                    .search__box {
+                        display: flex;
+                        flex: 1;
+                        margin-right: 1.8rem;
+                        position: relative;
+
+                        &__input {
+                            width: 100%;
+                            border: 0.1rem solid var.$themeBlack;
+                            border-radius: 15rem;
+                            font-size: 1.3rem;
+                            padding: 1.5rem 1.5rem 1.5rem 5rem;
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+
+                        &__submit {
+                            color: var.$themeGrey;
+                            position: absolute;
+                            top: 0.2rem;
+                            left: 0.8rem;
+                        }
+                    }
+
+                    .logo-holder {
+                        margin-right: 1rem;
+
+                        .logo {
+                            margin-left: 0;
+                            width: 9rem;
+                            max-width: 9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

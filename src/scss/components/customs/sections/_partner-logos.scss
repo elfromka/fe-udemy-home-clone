@@ -1,0 +1,19 @@
+.partner-logos {
+    .section {
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem 4rem;
+
+            .list__item {
+                padding-bottom: 0;
+            }
+
+            .logo {
+                vertical-align: middle;
+            }
+        }
+    }
+}

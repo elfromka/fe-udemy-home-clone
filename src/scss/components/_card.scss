@@ -1,0 +1,77 @@
+@use "../common/variables" as var;
+
+.card {
+    text-align: left;
+    margin-bottom: 2rem;
+    overflow: hidden;
+
+    &-link {
+        color: var.$themeBlack;
+    }
+
+    &__cover-container__image {
+        filter: brightness(100%);
+        -webkit-filter: brightness(100%);
+        max-width: 100%;
+        height: auto;
+        border: 0.1rem solid var.$themeGrey;
+        transition: filter 0.3s ease-in-out;
+        -webkit-transition: filter 0.3s ease-in-out;
+        -moz-transition: filter 0.3s ease-in-out;
+        -o-transition: filter 0.3s ease-in-out;
+        -ms-transition: filter 0.3s ease-in-out;
+    }
+
+    &__details {
+        &__title {
+            font-family: var.$fontRaleway;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 0.5rem;
+        }
+
+        .creators {
+            .list__item {
+                display: inline;
+                color: var.$themeGrey;
+                font-size: 1.2rem;
+            }
+        }
+
+        .rating {
+            &__number {
+                color: var.$themeOrange;
+                font-weight: bold;
+                font-size: 1.6rem;
+            }
+
+            &__stars {
+                color: var.$themeLightOrange;
+                display: inline-flex;
+                gap: 0.2rem;
+                font-size: 1.2rem;
+            }
+
+            &__reviews {
+                color: var.$themeGrey;
+                font-size: 1.4rem;
+                margin-left: 0.4rem;
+            }
+        }
+
+        .price {
+            margin: 0.6rem 0;
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        .card__cover-container__image {
+            filter: brightness(80%);
+            -webkit-filter: brightness(80%);
+        }
+    }
+}

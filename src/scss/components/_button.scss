@@ -1,0 +1,78 @@
+@use "../common/variables" as var;
+
+.btn {
+    border: 0;
+    padding: 1rem;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.7rem;
+    display: block;
+
+    @media (min-width: var.$breakpointTablet) {
+        display: inline-block;
+    }
+
+    &:active {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    &--primary {
+        background-color: var.$themeBlack;
+        color: var.$themeWhite;
+
+        &:hover {
+            background-color: var.$themeOnHoverPrimary;
+        }
+    }
+
+    &--secondary {
+        background-color: transparent;
+        border: 0.1rem solid var.$themeBlack;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var.$themeBlack;
+        width: 100%;
+
+        @media (min-width: var.$breakpointTablet) {
+            width: auto;
+        }
+
+        &:hover {
+            background-color: var.$themeOnHoverSecondary;
+        }
+    }
+
+    &--outline {
+        border: 0.1rem solid var.$themeWhite;
+        color: var.$themeWhite;
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        &.language-changer {
+            padding: 1rem 4rem 1rem 1.4rem;
+        }
+    }
+
+    &--outline-black-pill {
+        border: 0.1rem solid var.$themeBlack;
+        display: inline-block;
+        padding: 1.4rem;
+        border-radius: 23rem;
+        font-size: 1.5rem;
+        color: var.$themeBlack;
+
+        &:hover {
+            background-color: var.$themeOnHoverSecondary;
+        }
+    }
+
+    .icon {
+        margin-right: 0.25rem;
+    }
+
+    .text {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+}
