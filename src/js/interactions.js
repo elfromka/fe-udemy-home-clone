@@ -227,12 +227,22 @@ const carouselsInitialization = () => {
         isPressedDown = false;
     });
 
+    window.addEventListener(
+        "touchend",
+        () => {
+            isPressedDown = false;
+        },
+        {
+            passive: false,
+        }
+    );
+
     carouselWrappers.forEach((carouselWrapper) => {
         // the actual items holder/wrapper, this has the items (cards-tutorials)
         const carouselWrapperItems = carouselWrapper.firstElementChild;
         if (!carouselWrapperItems) return false;
 
-        // to set grid-template-columns dynamically
+        // to set grid-template-columns dynamically - retrieve all items that is added in the carousel
         const totalItems = carouselWrapperItems.childElementCount;
         carouselWrapperItems.style.setProperty(
             "grid-template-columns",
@@ -250,6 +260,18 @@ const carouselsInitialization = () => {
             carouselWrapper.style.cursor = "grabbing";
         });
 
+        carouselWrapper.addEventListener(
+            "touchstart",
+            (e) => {
+                isPressedDown = true;
+                cursorHorizontalPosition =
+                    e.offsetX - carouselWrapperItems.offsetLeft;
+            },
+            {
+                passive: false,
+            }
+        );
+
         // on release, set the grab button as cursor
         carouselWrapper.addEventListener("mouseup", () => {
             carouselWrapper.style.cursor = "grab";
@@ -266,6 +288,23 @@ const carouselsInitialization = () => {
 
             setCarouselBoundaries(carouselWrapper, carouselWrapperItems);
         });
+
+        carouselWrapper.addEventListener(
+            "touchmove",
+            (e) => {
+                if (!isPressedDown) return;
+
+                e.preventDefault();
+                carouselWrapperItems.style.left = `${
+                    e.offsetX - cursorHorizontalPosition
+                }px`;
+
+                setCarouselBoundaries(carouselWrapper, carouselWrapperItems);
+            },
+            {
+                passive: false,
+            }
+        );
     });
 
     return true;
