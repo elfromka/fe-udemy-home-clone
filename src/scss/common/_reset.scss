@@ -1,7 +1,7 @@
 @use "./variables" as var;
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
-@import "/node_modules/normalize.css/normalize.css";
+@import "../../../build/normalize.css/normalize.css";
 
 *,
 *::before,
